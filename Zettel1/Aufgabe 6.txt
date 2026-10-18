@@ -1,0 +1,40 @@
+Aufgabe 6
+
+a)
+
+- free(i) wird erst nach der Schleife aufgerufen und nicht innerhalb.
+- die ersten 9 Speicher Allocations werden nie befreit 
+=> Das führt zu einem Datenleck im Code.
+
+Lösung: free(i) nach jedem Schleifendurchlauf aufrufen um den ganzen allokierten Speicher wieder zu befreien.
+
+b)
+
+Zwei Fehler:
+
+1. in Zeile 3 wird eine undeklarierte Variable i geprüft. Das führt zu einem Kompilierfehler und überprüft nicht ob malloc Erfolgreich war.
+
+2. Es werden die Indexe 1 und 2 benutzt statt 0 und 1. 
+=> Zugriffsfehler, weil malloc nur Speicher für zwei doubles allokiert hat.
+
+Lösung: 
+
+1: 	if (d==NULL){}
+
+2: 	d[0]= 4.772
+	d[1]= -17 * 3.557
+	
+c)
+- malloc(sizof(int*)) reserviert lediglich den Platz für einen Zeiger, initialisiert diesen ab nie. 
+- auf diesem allokierten Speicher liegt noch Müll rum.
+
+=>  **i = 5 versucht diesen Müll zu dereferenzieren was undefiniertes Verhalten verursacht (meist Programm Absturz).
+
+Lösung: *i definieren indem man *i = malloc(sizeof(int)) macht.
+
+- Dadurch wird der allokierte Speicher auch mit einem richtigen Zeiger belegt, welcher beim dereferenzieren auf einen gültigen Speicherbereich zeigt.
+
+- Am Ende muss man noch free(*i) aufrufen um diesen Speicher wieder freizugeben.
+	
+	
+
