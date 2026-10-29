@@ -1,0 +1,6 @@
+Aufgabe 3 d)
+
+Der Befehl call legt einen Returnpointer auf den Stack und springt auf die Adresse der Funktion.
+Der Befehl ret wird innerhalb der Funktion aufgerufen und nimmt die erste Adresse auf dem Stack (normalerweise der Returnpointer) und springt zu ihr.
+Dadurch kann man innerhalb einer Funktion ebenfalls weitere Funktionsaufrufe, bzw. Rekursionsaufrufe machen und das Programm weiß immer wohin es nach ret springen muss
+um korrekt weiter zu laufen.
